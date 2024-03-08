@@ -53,8 +53,8 @@ const MainContainer = () => {
       <MenuContainer />
       
       <section className="w-full my-6">
-        <div className="w-full flex flex-col md:flex-row items-center justify-center gap-5">
-          <div className="md:w-[42%] ">
+        <div className="w-full flex flex-col md:flex-row items-center justify-center md:gap-5 gap-10">
+          <div className="md:w-[42%]">
             <div className="w-full h-[150px] relative">
               <div className="w-full h-full bg-[black] opacity-[0.2] absolute rounded-[10px]"></div>
               <p className="absolute bottom-0 left-0 text-white p-4 text-[1.8rem] font-[500]">
@@ -74,12 +74,12 @@ const MainContainer = () => {
             </div>
             <a
               href="#"
-              className="text-[1.1rem] md:text-[1.5rem] text-red-800 underline font-[500]"
+              className="text-[1rem] text-[white] font-[400] bg-red-600 p-2 px-4 rounded-[10px]"
             >
-              Order Nendys For Your Event
+              Order Now
             </a>
           </div>
-          <div className="md:w-[42%] ">
+          <div className="md:w-[42%]">
             <div className="w-full h-[150px] relative">
               <div className="w-full h-full bg-[black] opacity-[0.3] absolute rounded-[10px]"></div>
               <p className="absolute bottom-0 left-0 text-[#ffffff] p-4 text-[1.8rem] font-[500]">
@@ -98,7 +98,7 @@ const MainContainer = () => {
             </div>
             <a
               href="#"
-              className="text-[1.1rem] md:text-[1.5rem] text-[black] underline font-[500]"
+              className="text-[1rem] text-[white] font-[400] bg-red-600 p-2 px-4 rounded-[10px]"
             >
               Place Order
             </a>

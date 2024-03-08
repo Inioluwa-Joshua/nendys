@@ -3,11 +3,34 @@ import Delivery from "../img/delivery.png";
 import logo from "../img/logo.png";
 import HeroBg from "../img/heroBg.png";
 import { heroData } from "../utils/data";
+import Typed from "typed.js";
 
 const HomeContainer = () => {
+  const el = React.useRef(null);
+
+  React.useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: [
+        "It's noon, <br /> Order your launch <br />from <span class='text-orange-600 text-[2.1rem] md:text-[4rem]'>Nendys!</span>",
+        "Have you tried, <br /> Nendys Shawamah?",
+        "Order Now and leave a review.",
+      ],
+      startDelay: 1000,
+      typeSpeed: 80,
+      backSpeed: 50,
+      backDelay: 2000,
+      loop: true,
+      smartBackspace: true,
+      showCursor: false,
+    });
+
+    return () => {
+      typed.destroy();
+    };
+  }, []);
   return (
     <div className="w-full">
-      <div className="absolute w-[100%] h-screen top-0 left-0 flex justify-end align-center ">
+      <div className="hidden md:flex absolute w-[100%] h-screen top-0 left-0 justify-end align-center ">
         <img src={logo} className="opacity-[0.04]" alt="delivery" />
       </div>
       <section
@@ -28,14 +51,10 @@ const HomeContainer = () => {
             </div>
           </div>
 
-          <p className="mx-auto md:mx-0 text-[2rem] py-6 text-center md:text-left md:text-[3rem] font-bold tracking-wide md:leading-[4rem] text-headingColor">
-            It's noon,
-            <br /> Order your launch <br />
-            from{" "}
-            <span className="text-orange-600 text-[2.1rem] md:text-[4rem]">
-              Nendys!
-            </span>
-          </p>
+          <p
+            ref={el}
+            className="mx-auto md:mx-0 text-[2rem] py-2 text-center md:text-left md:text-[3rem] font-[400] tracking-wide leading-[2.5rem] md:leading-[4rem] text-headingColor"
+          />
 
           {/* <p className="text-base text-textColor text-center md:text-left md:w-[80%]">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima velit
@@ -45,12 +64,13 @@ const HomeContainer = () => {
         </p> */}
           <div className="flex gap-4 flex-col md:flex-row mx-auto md:mx-0">
             <a href="#menu">
-            <button
-              type="button"
-              className="bg-gradient-to-br from-orange-400 to-orange-500 w-full md:w-auto px-4 py-2  rounded-lg hover:shadow-lg transition-all ease-in-out duration-100"
-            >
-              Order Now
-            </button></a>
+              <button
+                type="button"
+                className="bg-gradient-to-br from-orange-400 to-orange-500 w-full md:w-auto px-4 py-2  rounded-lg hover:shadow-lg transition-all ease-in-out duration-100"
+              >
+                Order Now
+              </button>
+            </a>
             <button
               type="button"
               className="border border-[black] w-full md:w-auto px-4 py-2  rounded-lg hover:shadow-lg transition-all ease-in-out duration-100"

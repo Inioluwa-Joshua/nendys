@@ -10,10 +10,10 @@ const Footer = () => {
             <div className=" bg-linear-pink-invert pb-12">
                 <div className="mx-auto container pt-20 lg:pt-72 flex flex-col items-center justify-center">
                     <Link to={"/"} className="flex items-center gap-2">
-                        <img src={Logo} className="w-8 object-cover" alt="logo" />
-                        <p className="text-headingColor text-xl font-bold"> Nendys</p>
+                        <img src={Logo} className="w-[5rem] object-cover" alt="logo" />
+                        {/* <p className="text-headingColor text-xl font-bold"> Nendys</p> */}
                     </Link>
-                    <div className="text-black flex flex-col md:items-center f-f-l pt-3">
+                    <div className="text-black flex flex-col md:items-center f-f-l">
                         <h1 className="text-2xl font-black">Nendys Online Store</h1>
                         <div className="md:flex items-center mt-5 md:mt-10 text-base text-color f-f-l">
                             <h2 className=" md:mr-6 pb-4 md:py-0 cursor-pointer">Shop Now</h2>

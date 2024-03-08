@@ -2,43 +2,48 @@ import I1 from "../img/i1.png";
 import F1 from "../img/f1.png";
 import C3 from "../img/c3.png";
 import Fi1 from "../img/fi1.png";
+import shawama from "../img/shawarma.png";
+import pizza from "../img/pizza.png";
+import noodles from "../img/noodles.png";
+import drinks from "../img/drinks.png";
+
 
 export const heroData = [
   {
     id: 1,
-    name: "Icecream",
-    decp: "Chocolate & vanilla",
+    name: "Shawarma",
+    decp: "Medium and Large",
     price: "5.25",
-    imageSrc: I1,
+    imageSrc: shawama,
   },
   {
     id: 2,
-    name: "Strawberries",
-    decp: "Fresh Strawberries",
+    name: "Noodles",
+    decp: "Noodles and Chicken",
     price: "10.25",
-    imageSrc: F1,
+    imageSrc: noodles,
   },
   {
     id: 3,
-    name: "Chicken Kebab",
-    decp: "Mixed Kebab Plate",
+    name: "Pizza",
+    decp: "Medium and Large Pizza",
     price: "8.25",
-    imageSrc: C3,
+    imageSrc: pizza,
   },
   {
     id: 4,
-    name: "Fish Kebab",
-    decp: "Mixed Fish Kebab",
+    name: "Fruit Drinks",
+    decp: "Fruit Drinks And Smoodies",
     price: "5.25",
-    imageSrc: Fi1,
+    imageSrc: drinks,
   },
 ];
 
 export const categories = [
   {
     id: 1,
-    name: "Tiger Nuts",
-    urlParamName: "tiger_nuts",
+    name: "Noodles",
+    urlParamName: "noodles",
   },
   {
     id: 2,
@@ -52,24 +57,34 @@ export const categories = [
   },
   {
     id: 4,
-    name: "Fish",
-    urlParamName: "fish",
+    name: "Chips",
+    urlParamName: "chips",
   },
   {
     id: 5,
-    name: "Fruits",
-    urlParamName: "fruits",
+    name: "Fruits Drinks",
+    urlParamName: "fruitsDrinks",
   },
   {
     id: 6,
-    name: "Icecreams",
-    urlParamName: "icecreams",
+    name: "Burger",
+    urlParamName: "burger",
   },
 
   {
     id: 7,
-    name: "Pizzer",
-    urlParamName: "pizzer",
+    name: "Tiger Nut",
+    urlParamName: "tigerNut",
+  },
+  {
+    id: 8,
+    name: "Chicken",
+    urlParamName: "chicken",
+  },
+  {
+    id: 9,
+    name: "Gizzdodo",
+    urlParamName: "gizzdodo",
   },
 ];
 
