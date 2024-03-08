@@ -33,7 +33,6 @@ const CreateContainer = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [{ foodItems }, dispatch] = useStateValue();
 
-
   const uploadImage = (e) => {
     setIsLoading(true);
     const imageFile = e.target.files[0];
@@ -73,7 +72,6 @@ const CreateContainer = () => {
     );
   };
 
-
   const deleteImage = () => {
     setIsLoading(true);
     const deleteRef = ref(storage, imageAsset);
@@ -89,13 +87,20 @@ const CreateContainer = () => {
     });
   };
 
-
   const saveDetails = () => {
     setIsLoading(true);
     try {
-      if (!title || !imageAsset || !price || !category  || category === "Select Category (Foods, Drinks,...)") {
+      if (!title || !imageAsset || !price || !category) {
         setFields(true);
         setMsg("Required fields can't be empty");
+        setAlertStatus("danger");
+        setTimeout(() => {
+          setFields(false);
+          setIsLoading(false);
+        }, 4000);
+      } else if (category === "Select Category") {
+        setFields(true);
+        setMsg("Reselect your product category");
         setAlertStatus("danger");
         setTimeout(() => {
           setFields(false);
@@ -152,7 +157,6 @@ const CreateContainer = () => {
     });
   };
 
-
   return (
     <div className="w-full min-h-screen flex items-center justify-center">
       <div className="w-[90%] md:w-[50%] border border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center gap-4">
@@ -188,7 +192,7 @@ const CreateContainer = () => {
             onChange={(e) => setCategory(e.target.value)}
             className="outline-none w-full text-base border-b-2 border-gray-200 p-2 rounded-md cursor-pointer"
           >
-            <option value="other" className="bg-white">
+            <option value="Select Category" className="bg-white">
               Select Category (Foods, Drinks,...)
             </option>
             {categories &&
@@ -202,7 +206,6 @@ const CreateContainer = () => {
                 </option>
               ))}
           </select>
-
 
           {/* Categories_2
           <select
@@ -248,7 +251,7 @@ const CreateContainer = () => {
                     />
                   </label>
                 </>
-              ) : ( 
+              ) : (
                 <>
                   <div className="relative h-full">
                     <img
@@ -269,7 +272,6 @@ const CreateContainer = () => {
             </>
           )}
         </div>
-        
 
         <div className="w-full flex flex-col md:flex-row items-center gap-3">
           <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
@@ -306,10 +308,9 @@ const CreateContainer = () => {
             Save
           </button>
         </div>
-      
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CreateContainer
+export default CreateContainer;
