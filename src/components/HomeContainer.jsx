@@ -19,7 +19,7 @@ const HomeContainer = () => {
       typeSpeed: 80,
       backSpeed: 50,
       backDelay: 2000,
-      loop: true,
+      // loop: true,
       smartBackspace: true,
       showCursor: false,
     });
@@ -91,7 +91,7 @@ const HomeContainer = () => {
               heroData.map((n) => (
                 <div
                   key={n.id}
-                  className="lg:w-190 p-4 bg-cardOverlay backdrop-blur-md rounded-3xl flex flex-col items-center justify-center drop-shadow-lg"
+                  className="w-150 lg:w-190 p-4 bg-cardOverlay backdrop-blur-md rounded-3xl flex flex-col items-center justify-center drop-shadow-lg"
                 >
                   <img
                     src={n.imageSrc}
