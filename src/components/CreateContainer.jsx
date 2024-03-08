@@ -93,7 +93,7 @@ const CreateContainer = () => {
   const saveDetails = () => {
     setIsLoading(true);
     try {
-      if (!title || !imageAsset || !price || !category) {
+      if (!title || !imageAsset || !price || !category  || category === "Select Category (Foods, Drinks,...)") {
         setFields(true);
         setMsg("Required fields can't be empty");
         setAlertStatus("danger");
@@ -189,7 +189,7 @@ const CreateContainer = () => {
             className="outline-none w-full text-base border-b-2 border-gray-200 p-2 rounded-md cursor-pointer"
           >
             <option value="other" className="bg-white">
-              Select Category (Foods, Drinks, Fruits,...)
+              Select Category (Foods, Drinks,...)
             </option>
             {categories &&
               categories.map((item) => (
@@ -204,7 +204,7 @@ const CreateContainer = () => {
           </select>
 
 
-          {/* Categories_2 */}
+          {/* Categories_2
           <select
             onChange={(e) => setCategory(e.target.value)}
             className="outline-none w-full text-base border-b-2 border-gray-200 p-2 rounded-md cursor-pointer"
@@ -222,7 +222,7 @@ const CreateContainer = () => {
                   {item.name}
                 </option>
               ))}
-          </select>
+          </select> */}
         </div>
 
         <div className="group flex justify-center items-center flex-col border-2 border-dotted border-gray-300 w-full h-225 md:h-340 cursor-pointer rounded-lg">
@@ -285,7 +285,7 @@ const CreateContainer = () => {
           </div>
 
           <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
-            <MdAttachMoney className="text-gray-700 text-2xl" />
+            <span className="text-gray-700 text-2xl">&#x20A6;</span>
             <input
               type="text"
               required
