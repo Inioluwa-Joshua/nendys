@@ -1,36 +1,37 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MdShoppingBasket } from "react-icons/md";
-import { IoIosBookmark } from "react-icons/io";
 import { motion } from "framer-motion";
 import NotFound from "../img/NotFound.svg";
-import r3 from "../img/r3.png";
-import r5 from "../img/r5.png";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
-import { fetchCart } from "../utils/fetchLocalStorageData";
+import { setCookie } from "../utils/cookieFunctions";
 // const cartFromLocalStorage = JSON.parse(localStorage.getItem("cartItens"))
 
 const RowContainer = ({ flag, data, scrollValue }) => {
   const rowContainer = useRef();
   const [{ cartItems }, dispatch] = useStateValue();
-  const [items, setItems] = useState([]);
-  // localStorage.setItem("cart", JSON.stringify(items));
+  const [items, setItems] = useState(cartItems || []);
 
   const addtocart = () => {
+    setCookie("cartItems", items, 7); // Setting the cookie to expire in 7 days
     dispatch({
       type: actionType.SET_CARTITEMS,
       cartItems: items,
     });
-    localStorage.setItem("cartItems", JSON.stringify(items));
   };
 
   useEffect(() => {
-    rowContainer.current.scrollLeft += scrollValue;
-  }, [scrollValue]);
+    // Initialize items state with cartItems during component mount
+    setItems(cartItems || []);
+  }, [cartItems]);
 
   useEffect(() => {
     addtocart();
   }, [items]);
+
+  useEffect(() => {
+    rowContainer.current.scrollLeft += scrollValue;
+  }, [scrollValue]);
 
   return (
     <div
@@ -94,7 +95,10 @@ const RowContainer = ({ flag, data, scrollValue }) => {
                   <motion.button
                     whileTap={{ scale: 0.75 }}
                     className="flex items-center gap-2 p-2 py-1 bg-red-600 text-white rounded-[10px] text-[0.9rem] "
-                    onClick={() => setItems([...cartItems, item])}
+                    onClick={() => {
+                      setItems((prevItems) => [...prevItems, item]);
+                      addtocart();
+                    }}
                   >
                     Add To Cart <MdShoppingBasket />
                   </motion.button>

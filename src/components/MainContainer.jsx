@@ -51,7 +51,7 @@ const MainContainer = () => {
       </section>
 
       <MenuContainer />
-      
+
       <section className="w-full my-6">
         <div className="w-full flex flex-col md:flex-row items-center justify-center md:gap-5 gap-10">
           <div className="md:w-[42%]">
@@ -93,7 +93,9 @@ const MainContainer = () => {
             </div>
             <div className="py-5 font-[300] md:w-[90%]">
               <p>
-              Sometimes all you need for culture fit is a corporate hangout/event with a lot Smallchops. This is what we go to work for.
+                Sometimes all you need for culture fit is a corporate
+                hangout/event with a lot Smallchops. This is what we go to work
+                for.
               </p>
             </div>
             <a

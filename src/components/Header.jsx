@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { MdShoppingBasket, MdAdd, MdLogout } from "react-icons/md";
 import { motion } from "framer-motion";
-
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { app } from "../firebase.config";
-
 import Logo from "../img/logo.png";
 import Avatar from "../img/avatar.png";
 import { Link } from "react-router-dom";
@@ -12,43 +8,11 @@ import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import CartContainer from "./CartContainer";
 
-
-const Header = () => { 
+const Header = ({ login, logout, isMenu, setIsMenu }) => {
   // console.log(fetchCart())
   // const newData = fetchCart()
   // console.log(newData)
-
-  const firebaseAuth = getAuth(app);
-  const provider = new GoogleAuthProvider();
-  
   const [{ user, cartShow, cartItems }, dispatch] = useStateValue();
-  // console.log(cartItems.length)
-  const [isMenu, setIsMenu] = useState(false);
-
-  const login = async () => {
-    if (!user) {
-      const {
-        user: { providerData },
-      } = await signInWithPopup(firebaseAuth, provider);
-      dispatch({
-        type: actionType.SET_USER,
-        user: providerData[0],
-      });
-      localStorage.setItem("user", JSON.stringify(providerData[0]));
-    } else {
-      setIsMenu(!isMenu);
-    }
-  };
-
-  const logout = () => {
-    setIsMenu(false);
-    localStorage.clear();
-
-    dispatch({
-      type: actionType.SET_USER,
-      user: null,
-    });
-  };
 
   const showCart = () => {
     dispatch({
@@ -73,13 +37,19 @@ const Header = () => {
             exit={{ opacity: 0, x: 200 }}
             className="flex items-center gap-24 "
           >
-            <Link to={"/index"} className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+            <Link
+              to={"/index"}
+              className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer"
+            >
               Home
             </Link>
             {/* <Link className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
               Store
             </Link> */}
-            <Link to={"/About"} className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+            <Link
+              to={"/About"}
+              className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer"
+            >
               About Us
             </Link>
             <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
@@ -116,7 +86,9 @@ const Header = () => {
                 exit={{ opacity: 0, scale: 0.6 }}
                 className="w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0"
               >
-                {user && user.email === "codemiedu@gmail.com" && (
+                {["joshuainioluwa15@gmail.com", "codemiedu@gmail.com", "vectorceenation@gmail.com"].includes(
+                  user.email
+                ) && (
                   <Link to={"/createItem"}>
                     <p
                       className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base"
@@ -175,16 +147,19 @@ const Header = () => {
               exit={{ opacity: 0, scale: 0.6 }}
               className="w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0"
             >
-
-              {user && user.email === "codemiedu@gmail.com" && (
-                <Link to={"/createItem"}>
-                  <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base">
-                    New Item <MdAdd />
-                  </p>
-                </Link>
-              )}
+              {user &&
+                ["joshuainioluwa15@gmail.com", "codemiedu@gmail.com", "vectorceenation@gmail.com"].includes(
+                  user.email
+                ) && (
+                  <Link to={"/createItem"}>
+                    <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base">
+                      New Item <MdAdd />
+                    </p>
+                  </Link>
+                )}
               <ul className="flex flex-col ">
-                <Link to={"/index"}
+                <Link
+                  to={"/index"}
                   className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"
                   onClick={() => setIsMenu(false)}
                 >
@@ -196,7 +171,8 @@ const Header = () => {
                 >
                   Store
                 </Link> */}
-                <Link to={"/about"}
+                <Link
+                  to={"/about"}
                   className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"
                   onClick={() => setIsMenu(false)}
                 >
@@ -220,8 +196,7 @@ const Header = () => {
           )}
         </div>
       </div>
-      {cartShow && <CartContainer />}
-
+      {cartShow && <CartContainer login={login} />}
     </header>
   );
 };
